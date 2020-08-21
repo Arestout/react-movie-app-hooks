@@ -2,6 +2,7 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpackRules = require('./webpackRules');
 
 const isProd = process.env.NODE_ENV === 'production';
 const isDev = !isProd;
@@ -19,11 +20,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|ts)x?$/,
-        loader: require.resolve('babel-loader'),
-        exclude: /node_modules/,
-      },
-      {
         test: /\.scss$/,
         use: [
           {
@@ -37,6 +33,7 @@ module.exports = {
           'sass-loader',
         ],
       },
+      ...webpackRules,
     ],
   },
   devServer: {

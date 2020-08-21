@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const custom = require('../webpack.config.js');
 const webpackRules = require('../webpackRules');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   stories: ['../src/**/*.stories.tsx'],
@@ -10,6 +11,8 @@ module.exports = {
     '@storybook/addon-links',
     '@storybook/addon-knobs/register',
     '@storybook/addon-storysource',
+    '@storybook/addon-a11y',
+    '@storybook/addon-viewport',
     'storybook-addon-react-docgen/register',
     {
       name: '@storybook/addon-docs',
@@ -21,7 +24,10 @@ module.exports = {
     },
   ],
   webpackFinal: (config) => {
-    config.plugins.push(new webpack.HotModuleReplacementPlugin());
+    config.plugins.push(
+      new webpack.HotModuleReplacementPlugin(),
+      new MiniCssExtractPlugin({ filename: '[name].css' })
+    );
 
     config.module.rules.push({
       test: /\.stories\.tsx$/,
@@ -56,6 +62,12 @@ module.exports = {
       loader: require.resolve('@storybook/source-loader'),
       exclude: [/node_modules/],
       enforce: 'pre',
+    });
+
+    config.module.rules.push({
+      test: /\.scss$/,
+      use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+      include: path.resolve(__dirname, '../src'),
     });
 
     return {
