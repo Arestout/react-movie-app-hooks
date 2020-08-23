@@ -7,4 +7,4 @@ export default {
   decorators: [withKnobs],
 };
 
-export const defaultHeader = () => <Header />;
+export const defaultHeader = (): unknown => <Header />;

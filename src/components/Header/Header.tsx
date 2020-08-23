@@ -6,7 +6,7 @@ import './Header.styles.scss';
 
 export const Header: React.FC = () => {
   return (
-    <div className="row">
+    <div className="row mb-4">
       <div className="col">
         <Link className="btn header__nav-link" to="/">
           Home

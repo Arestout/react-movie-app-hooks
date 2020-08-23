@@ -1,7 +1,12 @@
 {
   "compilerOptions": {
     "baseUrl": "./",
-    "paths": {},
+    "paths": {
+      "api/*": ["src/api/*"],
+      "redux/*": ["src/redux/*"],
+      "pages/*": ["src/pages/*"],
+      "components/*": ["src/components/*"]
+    },
     "target": "es5",
     "module": "commonjs",
     "allowJs": true,
@@ -9,5 +14,6 @@
     "sourceMap": true,
     "strict": true,
     "esModuleInterop": true
-  }
+  },
+  "exclude": ["node_modules"]
 }

@@ -17,7 +17,7 @@ const styles = {
   minHeight: '500px',
 };
 
-export const ButtonStates = () => (
+export const ButtonStates = (): unknown => (
   <div style={styles}>
     <Button className="btn mr" label="Default Button" />,
     <Button className="btn __hover mr" label="Button on hover" />,
