@@ -4,6 +4,11 @@ import { Movies, IMovie } from 'reduxApp/movies/movies.types';
 import { MovieItem } from './components/MovieItem';
 
 interface IMoviesList {
+  filters: {
+    sort_by: string;
+    year: string;
+    with_genres: Array<string>;
+  };
   movies: Movies;
 }
 
