@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '../Button/Button';
+import { Button } from 'components/Buttons/Button';
 
 import './Header.styles.scss';
 
 export const Header: React.FC = () => {
   return (
-    <div className="row mb-4">
+    <header className="row header">
       <div className="col">
         <Link className="btn header__nav-link" to="/">
           Home
@@ -15,6 +15,6 @@ export const Header: React.FC = () => {
       <div className="col">
         <Button label="Login" className="header__btn" />
       </div>
-    </div>
+    </header>
   );
 };

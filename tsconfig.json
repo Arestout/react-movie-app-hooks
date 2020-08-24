@@ -3,7 +3,7 @@
     "baseUrl": "./",
     "paths": {
       "api/*": ["src/api/*"],
-      "redux/*": ["src/redux/*"],
+      "reduxApp/*": ["src/redux/*"],
       "pages/*": ["src/pages/*"],
       "components/*": ["src/components/*"]
     },

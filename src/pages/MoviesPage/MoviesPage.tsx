@@ -1,12 +1,19 @@
 import React from 'react';
 
+import { MoviesList } from './components/MoviesList';
+import { useFetchMovies } from './hooks/useFetchMovies';
+
 export const MoviesPage: React.FC = () => {
+  const { movies } = useFetchMovies();
+
   return (
     <div className="row">
-      <div className="col-4">
+      <aside className="col-4">
         <h3>Filters:</h3>
-      </div>
-      <div className="col-8">TEST</div>
+      </aside>
+      <main className="col-8">
+        <MoviesList movies={movies} />
+      </main>
     </div>
   );
 };

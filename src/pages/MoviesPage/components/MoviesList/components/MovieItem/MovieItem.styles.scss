@@ -1,0 +1,33 @@
+.movie-item {
+    font-size: 1.4rem;
+    border: 1px solid #FFFFFF;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    &__info-box {
+        margin-top: 1.5rem;
+    }
+
+    &__title {
+        text-transform: capitalize;
+        font-size: 1.6rem;
+    }
+
+    &__button-box {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    &__rating-box {
+        display: flex;
+    }
+
+    &__rating {
+        margin-left: 0.3em;
+        line-height: 1.4;
+    }
+
+}

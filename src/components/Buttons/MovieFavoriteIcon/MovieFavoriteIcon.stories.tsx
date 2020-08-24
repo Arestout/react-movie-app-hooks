@@ -1,11 +1,11 @@
 import React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 
-import { Button } from './Button';
-import './Button.styles.scss';
+import { MovieFavoriteIcon } from './MovieFavoriteIcon';
+import '../Buttons.styles.scss';
 
 export default {
-  title: 'Buttons',
+  title: 'Buttons/MovieFavoriteIcon',
   decorators: [withKnobs],
 };
 
@@ -19,8 +19,6 @@ const styles = {
 
 export const ButtonStates = (): unknown => (
   <div style={styles}>
-    <Button className="btn mr" label="Default Button" />,
-    <Button className="btn __hover mr" label="Button on hover" />,
-    <Button className="btn __active mr" label="Button on click" />,
+    <MovieFavoriteIcon />,
   </div>
 );

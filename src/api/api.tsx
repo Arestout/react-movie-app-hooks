@@ -34,5 +34,62 @@ export class CallApi {
     } catch (error) {
       throw new Error(error);
     }
+
+    // static get(url: string, options: CallApiType = {}): IResponseData {
+    //   const { params = {} } = options;
+    //   const queryStringParams = {
+    //     api_key: API_KEY_3,
+    //     ...params,
+    //   };
+
+    //   return fetchApi(
+    //     `${API_URL}${url}?${queryString.stringify(queryStringParams)}`,
+    //     {
+    //       mode: 'cors',
+    //       headers: {
+    //         'Content-type': 'application/json',
+    //       },
+    //     }
+    //   );
+    // }
+
+    // static post(url: string, options: CallApiType = {}): unknown {
+    //   const { params = {}, body = {} } = options;
+    //   const queryStringParams = {
+    //     api_key: API_KEY_3,
+    //     ...params,
+    //   };
+
+    //   return fetchApi(
+    //     `${API_URL}${url}?${queryString.stringify(queryStringParams)}`,
+    //     {
+    //       method: 'POST',
+    //       mode: 'cors',
+    //       headers: {
+    //         'Content-type': 'application/json',
+    //       },
+    //       body: JSON.stringify(body),
+    //     }
+    //   );
+    // }
+
+    // static delete(url: string, options: CallApiType = {}): unknown {
+    //   const { params = {}, body = {} } = options;
+    //   const queryStringParams = {
+    //     api_key: API_KEY_3,
+    //     ...params,
+    //   };
+
+    //   return fetchApi(
+    //     `${API_URL}${url}?${queryString.stringify(queryStringParams)}`,
+    //     {
+    //       method: 'DELETE',
+    //       mode: 'cors',
+    //       headers: {
+    //         'Content-type': 'application/json',
+    //       },
+    //       body: JSON.stringify(body),
+    //     }
+    //   );
   }
 }

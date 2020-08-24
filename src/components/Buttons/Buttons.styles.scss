@@ -1,9 +1,7 @@
 .btn {
-    font-size: 1.6rem;
     color:#FFFFFF;
     display: block;
     border: 1px solid #FFFFFF;
-    padding: 0.5em 1.8em; 
     cursor: pointer;
     transition: all 0.2s;
     border-radius: 0;
@@ -28,4 +26,16 @@
 
 .mr {
     margin-right: 1rem;
+}
+
+.icon-button {
+    border: none;
+    color: #FFFFFF;
+    background-color: #463A3A;
+    margin-left: 0.5em;
+    transition: all 0.2s;
+
+    &:hover {
+        color: #d27d00;
+    }
 }

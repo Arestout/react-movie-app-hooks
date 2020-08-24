@@ -14,7 +14,7 @@ module.exports = {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
       api: path.resolve(__dirname, 'src/api'),
-      redux: path.resolve(__dirname, 'src/redux'),
+      reduxApp: path.resolve(__dirname, 'src/redux'),
       pages: path.resolve(__dirname, 'src/pages'),
       components: path.resolve(__dirname, 'src/components'),
     },
