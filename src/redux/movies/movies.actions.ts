@@ -30,9 +30,13 @@ export const fetchMoviesFailure = (
   payload: errorMessage,
 });
 
-export const fetchMovies = (): ThunkType => (dispatch) => {
+export const fetchMovies = (
+  queryStringParams: types.IMoviesParams
+): ThunkType => (dispatch) => {
   dispatch(fetchMoviesStart());
-  CallApi.get('/discover/movie')
+  CallApi.get('/discover/movie', {
+    params: queryStringParams,
+  })
     .then((response) => {
       dispatch(fetchMoviesSuccess(response.results));
     })

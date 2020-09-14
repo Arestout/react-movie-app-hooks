@@ -3,6 +3,10 @@ import React from 'react';
 import { Movies, IMovie } from 'reduxApp/movies/movies.types';
 import { MovieItem } from './components/MovieItem';
 
+interface IPagesData {
+  page: number;
+  total_pages: number | null;
+}
 interface IMoviesList {
   filters: {
     sort_by: string;
@@ -10,6 +14,8 @@ interface IMoviesList {
     with_genres: Array<string>;
   };
   movies: Movies;
+  page: number;
+  onChangePagination: ({ page, total_pages }: IPagesData) => void;
 }
 
 export const MoviesList: React.FC<IMoviesList> = ({ movies }) => (

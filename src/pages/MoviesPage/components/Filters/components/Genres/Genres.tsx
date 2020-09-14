@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios, { AxiosResponse } from 'axios';
 
+import './Genres.styles.scss';
+
 import { API_URL, API_KEY_3 } from 'api/api';
 
 interface IGenres {
@@ -29,7 +31,7 @@ export const Genres: React.FC<IGenres> = (props) => {
 
   useEffect(() => {
     axios.get(link).then(({ data }: AxiosResponse) => setGenres(data.genres));
-  }, []);
+  }, [link]);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChangeFilters({
@@ -43,9 +45,9 @@ export const Genres: React.FC<IGenres> = (props) => {
   };
 
   return (
-    <div className="form-group">
+    <div className="genres">
       {genres.map((genre) => (
-        <div className="form-check" key={genre.id}>
+        <div className="genres__checkbox-wrapper form-check" key={genre.id}>
           <input
             className="form-check-input"
             type="checkbox"
@@ -55,7 +57,10 @@ export const Genres: React.FC<IGenres> = (props) => {
             value={genre.id}
             onChange={onChange}
           />
-          <label className="form-check-label" htmlFor={genre.name}>
+          <label
+            className="genres__label form-check-label"
+            htmlFor={genre.name}
+          >
             {genre.name}
           </label>
         </div>

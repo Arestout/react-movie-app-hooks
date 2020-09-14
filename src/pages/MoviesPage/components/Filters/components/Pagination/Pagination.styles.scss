@@ -1,0 +1,11 @@
+.pagination__button{
+    font-size: 1.2rem;
+    padding: 0.5em 0;
+    width: 8rem;
+
+    &:disabled {
+        cursor: default;
+        border: 1px solid #FFFFFF;
+        box-shadow: none;
+    }
+}

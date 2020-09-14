@@ -16,6 +16,14 @@ export interface IMovie {
   vote_count: number;
 }
 
+export interface IMoviesParams {
+  sort_by: string;
+  year: string;
+  with_genres: string;
+  language: string;
+  page: number;
+}
+
 export type Movies = Array<IMovie>;
 
 export const FETCH_MOVIES_START = 'FETCH_MOVIES_START';

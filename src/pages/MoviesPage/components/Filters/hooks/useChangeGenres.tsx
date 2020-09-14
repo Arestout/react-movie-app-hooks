@@ -47,7 +47,7 @@ export const useChangeGenres = (props: IuseChangeGenres): ReturnType => {
 
   useEffect(() => {
     axios.get(link).then(({ data }: AxiosResponse) => setGenres(data.genres));
-  }, []);
+  }, [link]);
 
   return {
     genres,

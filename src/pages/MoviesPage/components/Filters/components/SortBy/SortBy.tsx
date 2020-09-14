@@ -2,6 +2,8 @@ import React from 'react';
 
 import { FormSelect } from 'components/Form/FormSelect';
 
+import './SortBy.styles.scss';
+
 const options = [
   { label: 'Popular Descending', value: 'popularity.desc' },
   { label: 'Popular Ascending', value: 'popularity.asc' },

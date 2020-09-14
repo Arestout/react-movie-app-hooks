@@ -2,12 +2,23 @@ import React from 'react';
 
 import 'components/Buttons/Buttons.styles.scss';
 
-interface ButtonProps {
+interface IButton {
   label: string;
   className: string;
+  disabled?: boolean;
+  onClick?: () => void;
 }
 
-export const Button: React.FC<ButtonProps> = (props) => {
-  const { label, className } = props;
-  return <button className={`btn ${className}`}>{label}</button>;
+export const Button: React.FC<IButton> = (props) => {
+  const { label, className, disabled, onClick } = props;
+  return (
+    <button
+      type="button"
+      className={`btn ${className}`}
+      disabled={disabled}
+      onClick={onClick}
+    >
+      {label}
+    </button>
+  );
 };

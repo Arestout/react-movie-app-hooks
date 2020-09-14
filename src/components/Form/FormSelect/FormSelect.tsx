@@ -1,5 +1,8 @@
 import React from 'react';
 
+// Styles
+import './FormSelect.styles.scss';
+
 interface IFormSelect {
   id: string;
   name: string;
@@ -21,8 +24,10 @@ export const FormSelect: React.FC<IFormSelect> = (props) => {
   const { id, name, value, onChange, labelText, children } = props;
 
   return (
-    <div className="form-group">
-      <label htmlFor={id}>{labelText}</label>
+    <div className="select__wrapper">
+      <label className="select__label" htmlFor={id}>
+        {labelText}
+      </label>
       <select
         id={id}
         className="form-control"
