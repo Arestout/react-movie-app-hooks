@@ -1,7 +1,6 @@
 import React from 'react';
 
 import FavoriteBorderSharpIcon from '@material-ui/icons/FavoriteBorderSharp';
-// import FavoriteSharpIcon from '@material-ui/icons/FavoriteSharp';
 
 export const MovieFavoriteIcon: React.FC = () => {
   return (

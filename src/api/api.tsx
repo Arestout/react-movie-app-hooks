@@ -1,5 +1,5 @@
 import queryString from 'query-string';
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 
 import * as types from './api.types';
 

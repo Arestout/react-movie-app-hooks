@@ -17,6 +17,7 @@ module.exports = {
       reduxApp: path.resolve(__dirname, 'src/redux'),
       pages: path.resolve(__dirname, 'src/pages'),
       components: path.resolve(__dirname, 'src/components'),
+      hooks: path.resolve(__dirname, 'src/hooks'),
     },
   },
   output: {

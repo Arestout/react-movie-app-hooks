@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import GradeSharpIcon from '@material-ui/icons/GradeSharp';
 
@@ -26,7 +27,11 @@ export const MovieItem: React.FC<IMovieItem> = ({ movie }) => {
       <div className="container movie-item__info-box">
         <div className="row">
           <div className="col-8">
-            <p className="movie-item__title">{movie.title}</p>
+            <p className="movie-item__title">
+              <Link className="card-title" to={`/movie/${movie.id}`}>
+                {movie.title}
+              </Link>
+            </p>
             <div className="movie-item__rating-box">
               <GradeSharpIcon style={{ color: '#d27d00', fontSize: 18 }} />{' '}
               <p className="movie-item__rating">{movie.vote_average}</p>
