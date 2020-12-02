@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import axios, { AxiosResponse } from 'axios';
+import React from 'react';
+import { useSelector } from 'react-redux';
+
+import { useFetchGenres } from 'pages/MoviesPage/hooks';
 
 import './Genres.styles.scss';
-
-import { API_URL, API_KEY_3 } from 'api/api';
+import { RootStateType } from 'reduxApp/rootReducer';
 
 interface IGenres {
   onChangeFilters: (
     event: React.ChangeEvent<HTMLSelectElement | HTMLInputElement> | ITarget
   ) => void;
-  with_genres: Array<string>;
 }
 
 interface ITarget {
@@ -19,19 +19,12 @@ interface ITarget {
   };
 }
 
-interface IGenre {
-  id: number;
-  name: string;
-}
-
 export const Genres: React.FC<IGenres> = (props) => {
-  const { onChangeFilters, with_genres } = props;
-  const [genres, setGenres] = useState<Array<IGenre>>([]);
-  const link = `${API_URL}/genre/movie/list?api_key=${API_KEY_3}&language=en-US&`;
-
-  useEffect(() => {
-    axios.get(link).then(({ data }: AxiosResponse) => setGenres(data.genres));
-  }, [link]);
+  const { genres } = useFetchGenres();
+  const { with_genres, isLoading } = useSelector(
+    (state: RootStateType) => state.filters
+  );
+  const { onChangeFilters } = props;
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChangeFilters({
@@ -46,25 +39,26 @@ export const Genres: React.FC<IGenres> = (props) => {
 
   return (
     <div className="genres">
-      {genres.map((genre) => (
-        <div className="genres__checkbox-wrapper form-check" key={genre.id}>
-          <input
-            className="form-check-input"
-            type="checkbox"
-            id={genre.name}
-            name={genre.name}
-            checked={with_genres.includes(String(genre.id))}
-            value={genre.id}
-            onChange={onChange}
-          />
-          <label
-            className="genres__label form-check-label"
-            htmlFor={genre.name}
-          >
-            {genre.name}
-          </label>
-        </div>
-      ))}
+      {!isLoading &&
+        genres.map((genre) => (
+          <div className="genres__checkbox-wrapper form-check" key={genre.id}>
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id={genre.name}
+              name={genre.name}
+              checked={with_genres.includes(String(genre.id))}
+              value={genre.id}
+              onChange={onChange}
+            />
+            <label
+              className="genres__label form-check-label"
+              htmlFor={genre.name}
+            >
+              {genre.name}
+            </label>
+          </div>
+        ))}
     </div>
   );
 };

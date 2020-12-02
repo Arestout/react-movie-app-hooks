@@ -1,1 +1,2 @@
-export * from './useFetchMovies';
+export { useFetchMovies } from './useFetchMovies';
+export { useFetchGenres } from './useFetchGenres';

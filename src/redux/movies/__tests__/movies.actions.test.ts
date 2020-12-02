@@ -1,7 +1,7 @@
 import * as actions from '../movies.actions';
 import * as types from '../movies.types';
 
-import { movies, errorMessage } from '../mockData';
+import { responseData, errorMessage } from './fetchMovies.test';
 
 describe('movies actions:', () => {
   it('start fetching movies', () => {
@@ -11,9 +11,9 @@ describe('movies actions:', () => {
   });
 
   it('update movies', () => {
-    expect(actions.fetchMoviesSuccess(movies)).toEqual({
+    expect(actions.fetchMoviesSuccess(responseData)).toEqual({
       type: types.FETCH_MOVIES_SUCCESS,
-      payload: movies,
+      payload: responseData,
     });
   });
 

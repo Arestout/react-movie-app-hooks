@@ -1,35 +1,35 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import { Button } from 'components/Buttons/Button';
 
 import './Pagination.styles.scss';
-
-interface IPagination {
-  page: number;
-  resetFilters: () => void;
-  total_pages: number | null;
-  onChangePagination: ({ page, total_pages }: IPagesData) => void;
-}
+import { RootStateType } from 'reduxApp/rootReducer';
 
 interface IPagesData {
   page: number;
-  total_pages: number | null;
+}
+interface IPagination {
+  resetFilters: () => void;
+  onChangePagination: ({ page }: IPagesData) => void;
 }
 
 export const Pagination: React.FC<IPagination> = (props) => {
-  const { page, resetFilters, total_pages, onChangePagination } = props;
+  const { resetFilters, onChangePagination } = props;
+  const total_pages = useSelector(
+    (state: RootStateType) => state.movies.total_pages
+  );
+  const page = useSelector((state: RootStateType) => state.filters.page);
 
   const nextPage = (step: number) => () => {
     onChangePagination({
       page: page + step,
-      total_pages: total_pages,
     });
   };
 
   const prevPage = (step: number) => () => {
     onChangePagination({
       page: page - step,
-      total_pages: total_pages,
     });
   };
 

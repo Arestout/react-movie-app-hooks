@@ -3,6 +3,7 @@
 exports[`Button should render a button 1`] = `
 <button
   className="btn btn"
+  type="button"
 >
   Button
 </button>

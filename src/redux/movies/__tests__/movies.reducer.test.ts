@@ -1,35 +1,20 @@
 import * as actions from '../movies.actions';
 import { moviesReducer, IMoviesState } from '../movies.reducer';
 
-const initialState: IMoviesState = {
-  isLoading: false,
-  movies: [],
-  errorMessage: '',
-};
+import { responseData, errorMessage } from './fetchMovies.test';
 
-const movies = [
-  {
-    adult: false,
-    backdrop_path: '/qVygtf2vU15L2yKS4Ke44U4oMdD.jpg',
-    genre_ids: [28, 80, 878],
-    id: 605116,
-    original_language: 'en',
-    original_title: 'Project Power',
-    overview:
-      'An ex-soldier, a teen and a cop collide in New Orleans as they hunt for the source behind a dangerous new pill that grants users temporary superpowers.',
-    popularity: 262.964,
-    poster_path: '/bOKjzWDxiDkgEQznhzP4kdeAHNI.jpg',
-    release_date: '2020-08-14',
-    title: 'Project Power',
-    video: false,
-    vote_average: 6.7,
-    vote_count: 625,
-  },
-];
-
-const errorMessage = 'something went wrong';
+let initialState: IMoviesState;
 
 describe('movies reducer', () => {
+  beforeEach(() => {
+    initialState = {
+      isLoading: false,
+      movies: [],
+      total_pages: null,
+      errorMessage: '',
+    };
+  });
+
   it('should return initial state by default', () => {
     expect(moviesReducer(void 0, {})).toEqual(initialState);
   });
@@ -42,10 +27,13 @@ describe('movies reducer', () => {
   });
 
   it('should update the moviesList and set loading to false', () => {
-    expect(moviesReducer(void 0, actions.fetchMoviesSuccess(movies))).toEqual({
-      ...initialState,
-      movies: movies,
+    expect(
+      moviesReducer(void 0, actions.fetchMoviesSuccess(responseData))
+    ).toEqual({
       isLoading: false,
+      movies: responseData.results,
+      total_pages: responseData.total_pages,
+      errorMessage: '',
     });
   });
 

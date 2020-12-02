@@ -1,7 +1,7 @@
 import * as types from './movies.types';
 import { ThunkAction } from 'redux-thunk';
 
-import type { RootStateType } from 'redux/rootReducer';
+import type { RootStateType } from 'reduxApp/rootReducer';
 
 import { CallApi } from 'api/api';
 
@@ -17,10 +17,10 @@ export const fetchMoviesStart = (): types.MoviesActionTypes => ({
 });
 
 export const fetchMoviesSuccess = (
-  movies: types.Movies
+  moviesData: types.IMoviesResponse
 ): types.MoviesActionTypes => ({
   type: types.FETCH_MOVIES_SUCCESS,
-  payload: movies,
+  payload: moviesData,
 });
 
 export const fetchMoviesFailure = (
@@ -32,15 +32,15 @@ export const fetchMoviesFailure = (
 
 export const fetchMovies = (
   queryStringParams: types.IMoviesParams
-): ThunkType => (dispatch) => {
-  dispatch(fetchMoviesStart());
-  CallApi.get('/discover/movie', {
-    params: queryStringParams,
-  })
-    .then((response) => {
-      dispatch(fetchMoviesSuccess(response.results));
-    })
-    .catch((error) => {
-      dispatch(fetchMoviesFailure(error.message));
+): ThunkType => async (dispatch) => {
+  try {
+    dispatch(fetchMoviesStart());
+    const response = await CallApi.get('/discover/movie', {
+      params: queryStringParams,
     });
+    const { total_pages, results } = response;
+    dispatch(fetchMoviesSuccess({ total_pages, results }));
+  } catch (error) {
+    dispatch(fetchMoviesFailure(error.message));
+  }
 };
