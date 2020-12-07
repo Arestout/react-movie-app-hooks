@@ -1,19 +1,19 @@
 import { AxiosRequestConfig } from 'axios';
 
-import type { Movies } from 'redux/movies/movies.types';
+import type { Movies } from 'reduxApp/movies/movies.types';
 
 type EmptyObject = {
   [key: string]: never;
 };
 
-interface ICallApiOptions {
+export interface ICallApiOptions {
   params: {
     language: string;
     sort_by: string;
     page: string;
     year: string;
   };
-  body?: unknown; // TODO
+  body?: any; // TODO
 }
 
 export type CallApiType = ICallApiOptions | EmptyObject | AxiosRequestConfig;

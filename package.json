@@ -39,6 +39,7 @@
     "@storybook/addon-viewport": "^6.0.13",
     "@storybook/addons": "^6.0.10",
     "@storybook/react": "^6.0.10",
+    "@types/classnames": "^2.2.11",
     "@types/enzyme": "^3.10.5",
     "@types/jest": "^26.0.10",
     "@types/react": "^16.9.46",
@@ -95,7 +96,8 @@
     "reactstrap": "^8.7.1",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "universal-cookie": "^4.0.4"
   },
   "loki": {
     "configurations": {

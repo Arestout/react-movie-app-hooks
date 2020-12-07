@@ -37,6 +37,7 @@ export const Pagination: React.FC<IPagination> = (props) => {
     <>
       <div className="mb-4 row justify-content-around">
         <Button
+          type="button"
           className="pagination__button mr-4"
           disabled={page === 1}
           onClick={prevPage(1)}
@@ -44,6 +45,7 @@ export const Pagination: React.FC<IPagination> = (props) => {
         />
 
         <Button
+          type="button"
           className="pagination__button mr-4"
           disabled={page === total_pages}
           onClick={nextPage(1)}
@@ -51,6 +53,7 @@ export const Pagination: React.FC<IPagination> = (props) => {
         />
 
         <Button
+          type="button"
           className="pagination__button"
           onClick={resetFilters}
           label="Reset"
