@@ -60,7 +60,7 @@ export const Pagination: React.FC<IPagination> = (props) => {
         />
       </div>
       <div className="row justify-content-md-center">
-        <div className="col-4">
+        <div className="col-4 pagination__text">
           {page} of {total_pages}
         </div>
       </div>

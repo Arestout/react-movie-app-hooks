@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './MovieDetails.styles.scss';
+
 const getReleaseDate = (releaseDate) =>
   new Date(releaseDate).toLocaleDateString();
 
@@ -13,7 +15,7 @@ const getLanguage = (language: string) =>
 
 export const MovieDetails: React.FC = ({ movie }) => {
   return movie ? (
-    <div className="container mt-3">
+    <div className="container mt-3 movie-details">
       <div className="row mb-3">
         <div className="col-4 bold">Status</div>
         <div className="col-8">{movie.status}</div>

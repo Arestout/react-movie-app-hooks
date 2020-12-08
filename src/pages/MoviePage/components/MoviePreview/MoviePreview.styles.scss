@@ -1,0 +1,21 @@
+.movie-preview {
+  &__title {
+    font-size: 4rem;
+  }
+
+  &__social-wrapper {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  &__overview {
+    font-size: 1.6rem;
+    letter-spacing: 0.2px;
+  }
+
+  &__social {
+    display: flex;
+    width: 9rem;
+  }
+}

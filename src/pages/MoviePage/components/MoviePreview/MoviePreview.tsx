@@ -1,7 +1,10 @@
 import React from 'react';
+
 import { MovieFavoriteIcon } from 'components/buttons/MovieFavoriteIcon';
 import { MovieWatchlistIcon } from 'components/buttons/MovieWatchlistIcon';
 import { Image } from 'components/Image';
+
+import './MoviePreview.styles.scss';
 
 export const MoviePreview: React.FC = ({ movie }) => {
   const imagePath = movie?.poster_path || movie?.backdrop_path;
@@ -16,12 +19,18 @@ export const MoviePreview: React.FC = ({ movie }) => {
         />
       </div>
       <div className="col-8">
-        <h2 className="title mb-4">{movie.title}</h2>
-        <p className="mb-4">{movie.overview}</p>
-        <p className="mb-4">Rating: {movie.vote_average}</p>
-        <div className="card-body">
-          <MovieFavoriteIcon />
-          <MovieWatchlistIcon />
+        <h2 className="title mb-4 movie-preview__title">{movie.title}</h2>
+        <p className="mb-4 movie-preview__overview">{movie.overview}</p>
+
+        <div className="movie-preview__social-wrapper">
+          <p className="mb-4 movie-preview__overview">
+            Rating: {movie.vote_average}
+          </p>
+
+          <div className="movie-preview__social">
+            <MovieFavoriteIcon />
+            <MovieWatchlistIcon />
+          </div>
         </div>
       </div>
     </div>

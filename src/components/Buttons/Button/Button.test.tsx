@@ -9,7 +9,7 @@ describe('Button', () => {
     expect(
       renderer
         .create(
-          <Button className="btn" label="Button">
+          <Button type="button" className="btn" label="Button">
             Button
           </Button>
         )

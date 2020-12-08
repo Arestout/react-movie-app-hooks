@@ -1,41 +1,40 @@
 .btn {
-    color:#FFFFFF;
-    display: block;
-    border: 1px solid #FFFFFF;
-    cursor: pointer;
-    transition: all 0.2s;
-    border-radius: 0;
+  display: block;
+  border: 1px solid #fff;
+  border-radius: 0;
+  color: #fff;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
 
-    &:hover, &.__hover {
-        color:#FFFFFF;
-        border: 1px solid #d27d00;
-        // transform: translateY(-1px);
-        box-shadow: 0 10px 20px rgba(#d27d00, 0.2);
-    }
+  &:active,
+  &.__active,
+  &:focus {
+    outline: none;
+    border: 1px solid #fff;
+    box-shadow: 0 5px 10px rgba(#d27d00, 0.2);
+    background: #d27d00;
+  }
 
-    &:active,
-    &.__active,
-    &:focus {
-        outline: none;
-        // transform: translateY(1px);
-        background: #d27d00;
-        border: 1px solid #FFFFFF;
-        box-shadow: 0 5px 10px rgba(#d27d00, 0.2);
-    }
+  &:hover,
+  &.__hover {
+    border: 1px solid #d27d00;
+    box-shadow: 0 10px 20px rgba(#d27d00, 0.2);
+    color: #fff;
+  }
 }
 
 .mr {
-    margin-right: 1rem;
+  margin-right: 1rem;
 }
 
 .icon-button {
-    border: none;
-    color: #FFFFFF;
-    background-color: #463A3A;
-    margin-left: 0.5em;
-    transition: all 0.2s;
+  margin-left: 0.5em;
+  border: none;
+  color: #fff;
+  background-color: #463a3a;
+  transition: all 0.2s;
 
-    &:hover {
-        color: #d27d00;
-    }
+  &:hover {
+    color: #d27d00;
+  }
 }

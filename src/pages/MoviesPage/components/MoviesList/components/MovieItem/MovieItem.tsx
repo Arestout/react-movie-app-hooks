@@ -28,7 +28,10 @@ export const MovieItem: React.FC<IMovieItem> = ({ movie }) => {
         <div className="row">
           <div className="col-8">
             <p className="movie-item__title">
-              <Link className="card-title" to={`/movie/${movie.id}`}>
+              <Link
+                className="card-title movie-item__link"
+                to={`/movie/${movie.id}`}
+              >
                 {movie.title}
               </Link>
             </p>

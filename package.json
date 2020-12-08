@@ -72,6 +72,7 @@
     "sass": "^1.26.10",
     "sass-loader": "^9.0.3",
     "storybook-addon-react-docgen": "^1.2.42",
+    "stylelint": "^13.8.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.3.0",
     "stylelint-order": "^4.1.0",
     "stylelint-scss": "^3.18.0",

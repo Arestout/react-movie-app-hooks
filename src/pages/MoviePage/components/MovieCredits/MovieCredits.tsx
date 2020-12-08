@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router';
+
 import { useFetch } from 'hooks/useFetch';
 import { Image } from 'components/Image';
+
+import './MovieCredits.styles.scss';
 
 export const MovieCredits: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -27,7 +30,9 @@ export const MovieCredits: React.FC = () => {
                   className="figure-img img-fluid rounded movie-page-image"
                   alt={actor.name}
                 />
-                <figcaption className="figure-caption">{actor.name}</figcaption>
+                <figcaption className="figure-caption movie-credits__name">
+                  {actor.name}
+                </figcaption>
               </figure>
             </div>
           ))

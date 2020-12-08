@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router';
+
 import { useFetch } from 'hooks/useFetch';
+
+import './MovieVideos.styles.scss';
 
 export const MovieVideos: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -24,7 +27,7 @@ export const MovieVideos: React.FC = () => {
         {error && <p>Error...</p>}
         {videos.length ? (
           videos.map((video) => (
-            <div className="col-6 mb-3" key={video.id}>
+            <div className="col-6 mb-3 movie-videos__single" key={video.id}>
               <iframe
                 className="tabs-box"
                 width="560"

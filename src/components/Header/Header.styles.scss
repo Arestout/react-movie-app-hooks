@@ -1,17 +1,17 @@
 .header {
-    margin-bottom: 5rem;
+  margin-bottom: 5rem;
 
-    &__btn {
-        margin-left: auto;
-        width: 10rem;
-        font-size: 1.6rem;
-        padding: 0.5em 1.8em; 
-    }
+  &__btn {
+    margin-left: auto;
+    padding: 0.5em 1.8em;
+    width: 10rem;
+    font-size: 1.6rem;
+  }
 
-    &__nav-link {
-        margin-right: auto;
-        width: 10rem;
-        font-size: 1.6rem;
-        padding: 0.5em 1.8em;
-    }
+  &__nav-link {
+    margin-right: auto;
+    padding: 0.5em 1.8em;
+    width: 10rem;
+    font-size: 1.6rem;
+  }
 }

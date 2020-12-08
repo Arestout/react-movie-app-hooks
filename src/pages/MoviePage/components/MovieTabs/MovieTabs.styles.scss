@@ -1,0 +1,12 @@
+.movie-tab {
+  border: 1px solid #fff;
+  font-size: 1.6rem;
+  color: #fff;
+  background: transparent;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    color: #fff;
+    background: #fea828;
+  }
+}

@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { Route, BrowserRouter } from 'react-router-dom';
 
-import './App.scss';
-
 import { Header } from './components/Header/Header';
 import { MoviesPage } from './pages/MoviesPage';
 import { MoviePage } from 'pages/MoviePage';
