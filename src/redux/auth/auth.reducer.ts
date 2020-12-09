@@ -5,7 +5,7 @@ import { Movies } from 'reduxApp/movies/movies.types';
 export const cookies = new Cookies();
 
 export interface IAuthState {
-  user: null;
+  user: any;
   session_id: string;
   isAuth: boolean;
   showLoginModal: boolean;

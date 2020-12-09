@@ -7,6 +7,8 @@ import { Image } from 'components/Image';
 import { IMovie } from 'reduxApp/movies/movies.types';
 import { MovieFavoriteIcon } from 'components/buttons/MovieFavoriteIcon';
 import { MovieWatchlistIcon } from 'components/buttons/MovieWatchlistIcon';
+import { useWatchList } from 'hooks/useWatchList';
+import { useFavorite } from 'hooks/useFavorite';
 
 import './MovieItem.styles.scss';
 
@@ -16,6 +18,16 @@ interface IMovieItem {
 
 export const MovieItem: React.FC<IMovieItem> = ({ movie }) => {
   const imagePath = movie.backdrop_path || movie.image_path;
+
+  const {
+    isLoadingWatchList,
+    handleClickWatchList,
+    isInWatchList,
+  } = useWatchList(movie);
+
+  const { isLoadingFavorite, handleClickFavorite, isFavorite } = useFavorite(
+    movie
+  );
 
   return (
     <div className="movie-item">
@@ -41,8 +53,16 @@ export const MovieItem: React.FC<IMovieItem> = ({ movie }) => {
             </div>
           </div>
           <div className="col-4 movie-item__button-box">
-            <MovieFavoriteIcon />
-            <MovieWatchlistIcon />
+            <MovieFavoriteIcon
+              onClick={handleClickFavorite}
+              isLoading={isLoadingFavorite}
+              isFavorite={isFavorite}
+            />
+            <MovieWatchlistIcon
+              onClick={handleClickWatchList}
+              isLoading={isLoadingWatchList}
+              isWatchList={isInWatchList}
+            />
           </div>
         </div>
       </div>

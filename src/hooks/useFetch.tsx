@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { CallApi } from 'api/';
+import { CallApi } from 'api/api';
 
 interface IUseFetch {
   isLoading: boolean;

@@ -3,11 +3,28 @@ import React from 'react';
 import { MovieFavoriteIcon } from 'components/buttons/MovieFavoriteIcon';
 import { MovieWatchlistIcon } from 'components/buttons/MovieWatchlistIcon';
 import { Image } from 'components/Image';
+import { useWatchList } from 'hooks/useWatchList';
+import { useFavorite } from 'hooks/useFavorite';
+import { IMovie } from 'reduxApp/movies/movies.types';
 
 import './MoviePreview.styles.scss';
 
-export const MoviePreview: React.FC = ({ movie }) => {
+interface IMoviePreview {
+  movie: IMovie;
+}
+
+export const MoviePreview: React.FC<IMoviePreview> = ({ movie }) => {
   const imagePath = movie?.poster_path || movie?.backdrop_path;
+
+  const {
+    isLoadingWatchList,
+    handleClickWatchList,
+    isInWatchList,
+  } = useWatchList(movie);
+
+  const { isLoadingFavorite, handleClickFavorite, isFavorite } = useFavorite(
+    movie
+  );
 
   return movie ? (
     <div className="row ml-5 mt-5">
@@ -28,8 +45,16 @@ export const MoviePreview: React.FC = ({ movie }) => {
           </p>
 
           <div className="movie-preview__social">
-            <MovieFavoriteIcon />
-            <MovieWatchlistIcon />
+            <MovieFavoriteIcon
+              onClick={handleClickFavorite}
+              isLoading={isLoadingFavorite}
+              isFavorite={isFavorite}
+            />
+            <MovieWatchlistIcon
+              onClick={handleClickWatchList}
+              isLoading={isLoadingWatchList}
+              isWatchList={isInWatchList}
+            />
           </div>
         </div>
       </div>
