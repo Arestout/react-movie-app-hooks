@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Route, BrowserRouter } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import { Header } from './components/Header/Header';
 import { MoviesPage } from './pages/MoviesPage';
@@ -41,12 +41,10 @@ export const App: React.FC = () => {
 
   return auth.isAuth || !auth.session_id ? (
     <div className="container">
-      <BrowserRouter>
-        <Header />
-        <Route exact path="/" component={MoviesPage} />
-        <Route path="/movie/:id/" component={MoviePage} />
-        <LoginModal />
-      </BrowserRouter>
+      <Header />
+      <Route exact path="/" component={MoviesPage} />
+      <Route path="/movie/:id/" component={MoviePage} />
+      <LoginModal />
     </div>
   ) : (
     <p>Loading...</p>

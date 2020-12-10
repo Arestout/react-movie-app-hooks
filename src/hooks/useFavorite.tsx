@@ -37,7 +37,7 @@ export const useFavorite = (movie: IMovie): IUseWatchList => {
         user: auth.user,
       });
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
     setIsLoading(false);
   };
