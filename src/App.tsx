@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import { Header } from './components/Header/Header';
 import { MoviesPage } from './pages/MoviesPage';
 import { MoviePage } from 'pages/MoviePage';
 import { LoginModal } from './components/Header/Login/LoginModal';
 import { useAuth } from 'hooks/useAuth';
+import { ErrorMessage } from './components/ErrorMessage/ErrorMessage';
 
 export const App: React.FC = () => {
   const {
@@ -42,8 +43,13 @@ export const App: React.FC = () => {
   return auth.isAuth || !auth.session_id ? (
     <div className="container">
       <Header />
-      <Route exact path="/" component={MoviesPage} />
-      <Route path="/movie/:id/" component={MoviePage} />
+      <Switch>
+        <Route exact path="/" component={MoviesPage} />
+        <Route path="/movie/:id/" component={MoviePage} />
+        <Route>
+          <ErrorMessage errorMessage="404. Page not found" />
+        </Route>
+      </Switch>
       <LoginModal />
     </div>
   ) : (
