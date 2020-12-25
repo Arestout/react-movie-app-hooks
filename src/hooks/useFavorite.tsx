@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useErrorHandler } from 'react-error-boundary';
 
 import { CallApi } from 'api/api';
 import { useAuth } from './useAuth';
@@ -13,6 +14,7 @@ interface IUseWatchList {
 export const useFavorite = (movie: IMovie): IUseWatchList => {
   const [isLoadingFavorite, setIsLoading] = useState(false);
   const { auth, dispatchFetchFavoriteMovies, dispatchLoginModal } = useAuth();
+  const handleError = useErrorHandler();
 
   const isFavorite = () =>
     auth.favoriteMovies.some((favoriteMovie) => favoriteMovie.id === movie?.id);
@@ -36,10 +38,10 @@ export const useFavorite = (movie: IMovie): IUseWatchList => {
         session_id: auth.session_id,
         user: auth.user,
       });
+      setIsLoading(false);
     } catch (error) {
-      throw new Error(error);
+      handleError(error);
     }
-    setIsLoading(false);
   };
 
   const handleClickFavorite = () => {

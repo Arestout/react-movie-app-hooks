@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useErrorHandler } from 'react-error-boundary';
 
 import { CallApi } from 'api/api';
 import { useAuth } from './useAuth';
@@ -13,6 +14,7 @@ interface IUseWatchList {
 export const useWatchList = (movie: IMovie): IUseWatchList => {
   const [isLoadingWatchList, setIsLoading] = useState(false);
   const { auth, dispatchFetchWatchListMovies, dispatchLoginModal } = useAuth();
+  const handleError = useErrorHandler();
 
   const isInWatchList = () =>
     auth.watchListMovies.some(
@@ -26,18 +28,22 @@ export const useWatchList = (movie: IMovie): IUseWatchList => {
       watchlist: !isInWatchList(),
     };
 
-    setIsLoading(true);
-    await CallApi.post(`/account/${auth?.user?.id}/watchlist`, {
-      params: {
+    try {
+      setIsLoading(true);
+      await CallApi.post(`/account/${auth?.user?.id}/watchlist`, {
+        params: {
+          session_id: auth.session_id,
+        },
+        body: queryStringParams,
+      });
+      dispatchFetchWatchListMovies({
         session_id: auth.session_id,
-      },
-      body: queryStringParams,
-    });
-    dispatchFetchWatchListMovies({
-      session_id: auth.session_id,
-      user: auth.user,
-    });
-    setIsLoading(false);
+        user: auth.user,
+      });
+      setIsLoading(false);
+    } catch (error) {
+      handleError(error);
+    }
   };
 
   const handleClickWatchList = () => {
