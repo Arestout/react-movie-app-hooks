@@ -3,6 +3,7 @@ import React from 'react';
 import { MoviesList } from './components/MoviesList';
 import { useFetchMovies } from './hooks/useFetchMovies';
 import { Filters } from './components/Filters';
+import { Helmet } from 'react-helmet';
 
 import { useSelector } from 'react-redux';
 import { RootStateType } from 'reduxApp/rootReducer';
@@ -17,6 +18,10 @@ export const MoviesPage: React.FC = () => {
 
   return (
     <div className="row">
+      <Helmet>
+        <title> Movie List - My Movie App</title>
+        <meta name="description" content="List of all movies" />
+      </Helmet>
       <aside className="filters col-4">
         <div className="filters__wrapper">
           <h3 className="filters__title">Filters</h3>

@@ -3,6 +3,8 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { useParams } from 'react-router';
 import { useFetch } from 'hooks/useFetch';
 import { TabContent, TabPane } from 'reactstrap';
+import { Helmet } from 'react-helmet';
+
 import {
   MovieTabs,
   MovieDetails,
@@ -22,6 +24,10 @@ export const MoviePage: React.FC = () => {
 
   return (
     <div className="container">
+      <Helmet>
+        <title> Movie Details: {movie ? movie.title : ''} - My Movie App</title>
+        <meta name="description" content={movie ? movie.overview : ''} />
+      </Helmet>
       <MoviePreview movie={movie} />
       <div className="row ml-5 mt-5">
         <div className="col-12 loader">
