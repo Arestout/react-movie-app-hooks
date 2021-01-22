@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { MovieFavoriteIcon } from 'components/buttons/MovieFavoriteIcon';
-import { MovieWatchlistIcon } from 'components/buttons/MovieWatchlistIcon';
+import { MovieFavoriteIcon } from 'components/Buttons/MovieFavoriteIcon';
+import { MovieWatchlistIcon } from 'components/Buttons/MovieWatchlistIcon';
 import { Image } from 'components/Image';
 import { useWatchList } from 'hooks/useWatchList';
 import { useFavorite } from 'hooks/useFavorite';

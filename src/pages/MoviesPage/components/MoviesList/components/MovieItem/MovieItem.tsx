@@ -5,8 +5,8 @@ import GradeSharpIcon from '@material-ui/icons/GradeSharp';
 
 import { Image } from 'components/Image';
 import { IMovie } from 'reduxApp/movies/movies.types';
-import { MovieFavoriteIcon } from 'components/buttons/MovieFavoriteIcon';
-import { MovieWatchlistIcon } from 'components/buttons/MovieWatchlistIcon';
+import { MovieFavoriteIcon } from 'components/Buttons/MovieFavoriteIcon';
+import { MovieWatchlistIcon } from 'components/Buttons/MovieWatchlistIcon';
 import { useWatchList } from 'hooks/useWatchList';
 import { useFavorite } from 'hooks/useFavorite';
 
