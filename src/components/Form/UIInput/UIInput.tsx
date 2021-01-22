@@ -1,6 +1,8 @@
 import React, { ChangeEvent, FocusEvent } from 'react';
 import classNames from 'classnames';
 
+import './UIInput.styles.scss';
+
 interface IPropTypes {
   type: string;
   name: string;
@@ -11,12 +13,11 @@ interface IPropTypes {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onBlur: (event: FocusEvent<HTMLInputElement>) => void;
   error: string;
+  className?: string;
+  classNameLabel?: string;
 }
 
 export const UIInput: React.FC<IPropTypes> = (props) => {
-  const getClassForInput = (error: string) =>
-    classNames('form-control', { invalid: error });
-
   const {
     type,
     id,
@@ -27,22 +28,29 @@ export const UIInput: React.FC<IPropTypes> = (props) => {
     onBlur,
     labelText,
     error,
+    className,
+    classNameLabel,
   } = props;
+
+  const getClassForInput = (error: string) =>
+    classNames('form-control', className, { invalid: error });
 
   return (
     <div className="form-group">
-      <label htmlFor={id}>{labelText}</label>
+      <label className={classNameLabel} htmlFor={id}>
+        {labelText}
+      </label>
       <input
         type={type}
         className={getClassForInput(error)}
         id={id}
         placeholder={placeholder}
         name={name}
-        value={value}
+        value={value || ''}
         onChange={onChange}
         onBlur={onBlur}
       />
-      {error && <div className="invalid-feedback">{error}</div>}
+      {error && <div className="error-feedback">{error}</div>}
     </div>
   );
 };

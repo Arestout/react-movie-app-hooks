@@ -7,7 +7,7 @@ interface IButton {
   type: 'button' | 'submit' | 'reset' | undefined;
   className: string;
   disabled?: boolean;
-  onClick?: () => void;
+  onClick?: (() => void) | ((e: React.FormEvent<HTMLButtonElement>) => void);
 }
 
 export const Button: React.FC<IButton> = (props) => {

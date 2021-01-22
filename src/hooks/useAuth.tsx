@@ -4,15 +4,17 @@ import { useSelector, shallowEqual, useDispatch } from 'react-redux';
 import { RootStateType } from 'reduxApp/rootReducer';
 import { IAuthState } from 'reduxApp/auth/auth.reducer';
 import * as authActions from 'reduxApp/auth/auth.actions';
+import * as types from 'reduxApp/auth/auth.types';
 
 interface ReturnType {
   auth: IAuthState;
   dispatchLoginModal: () => void;
-  dispatchUpdateAuth: (userData) => void;
+  dispatchUpdateAuth: ({ user, session_id }: types.IAuthData) => void;
   dispatchLogOut: () => void;
-  dispatchFetchAuth: (sessionId: string) => void;
-  dispatchFetchFavoriteMovies: ({ user, session_id }) => void;
-  dispatchFetchWatchListMovies: ({ user, session_id }) => void;
+  dispatchFetchAuth: (session_id: string) => void;
+  dispatchFetchAuthOnLogin: ({ username, password }: types.IUserAuth) => void;
+  dispatchFetchFavoriteMovies: ({ user, session_id }: types.IAuthData) => void;
+  dispatchFetchWatchListMovies: ({ user, session_id }: types.IAuthData) => void;
 }
 
 export const useAuth = (): ReturnType => {
@@ -29,7 +31,8 @@ export const useAuth = (): ReturnType => {
   );
 
   const dispatchUpdateAuth = useCallback(
-    (userData) => dispatch(authActions.updateAuth(userData)),
+    ({ user, session_id }) =>
+      dispatch(authActions.updateAuth({ user, session_id })),
     [dispatch]
   );
 
@@ -38,7 +41,18 @@ export const useAuth = (): ReturnType => {
   ]);
 
   const dispatchFetchAuth = useCallback(
-    (session_id: string) => dispatch(authActions.fetchAuth(session_id)),
+    (session_id: string) => {
+      dispatch(authActions.fetchRequestAuth());
+      dispatch(authActions.fetchAuth(session_id));
+    },
+    [dispatch]
+  );
+
+  const dispatchFetchAuthOnLogin = useCallback(
+    ({ username, password }) => {
+      dispatch(authActions.fetchRequestAuth());
+      dispatch(authActions.fetchAuthOnLogin({ username, password }));
+    },
     [dispatch]
   );
 
@@ -60,6 +74,7 @@ export const useAuth = (): ReturnType => {
     dispatchUpdateAuth,
     dispatchLogOut,
     dispatchFetchAuth,
+    dispatchFetchAuthOnLogin,
     dispatchFetchFavoriteMovies,
     dispatchFetchWatchListMovies,
   };

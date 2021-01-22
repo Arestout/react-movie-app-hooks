@@ -1,34 +1,38 @@
 import React, { useState } from 'react';
 
-import { CallApi } from 'api/api';
 import { UIInput } from 'components/Form/UIInput';
 import { useAuth } from 'hooks/useAuth';
+import { Button } from 'components/Buttons/Button';
+
+import './LoginForm.styles.scss';
+
+interface ILoginFormState {
+  username: string;
+  password: string;
+  submitting: boolean;
+  errors: Errors;
+}
+
+interface Errors {
+  username?: string;
+  password?: string;
+  base?: string | null;
+}
+
+const initialState: ILoginFormState = {
+  username: '',
+  password: '',
+  errors: {},
+  submitting: false,
+};
+
+const BASE_ERROR = 'You should provide a username and a password';
 
 export const LoginForm: React.FC = () => {
-  interface ILoginFormState {
-    username: string;
-    password: string;
-    submitting: boolean;
-    errors: Errors;
-  }
-
-  interface Errors {
-    username?: string;
-    password?: string;
-    base?: string | null;
-  }
-
-  const initialState: ILoginFormState = {
-    username: '',
-    password: '',
-    errors: {},
-    submitting: false,
-  };
-
   const [loginState, setLoginState] = useState(initialState);
-  const { dispatchLoginModal, dispatchUpdateAuth } = useAuth();
+  const { dispatchLoginModal, dispatchFetchAuthOnLogin } = useAuth();
 
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
     setLoginState({
@@ -42,7 +46,7 @@ export const LoginForm: React.FC = () => {
     });
   };
 
-  const handleBlur = (e) => {
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const errors = validateFields();
     const error = errors[name];
@@ -66,7 +70,7 @@ export const LoginForm: React.FC = () => {
       errors.username = 'Should not be empty';
     }
 
-    if (password.length === 0) {
+    if (password === '') {
       errors.password = 'Should not be empty';
     }
 
@@ -79,44 +83,29 @@ export const LoginForm: React.FC = () => {
       submitting: true,
     });
 
+    // TODO
     try {
-      const { request_token } = await CallApi.get('/authentication/token/new');
-      await CallApi.post('/authentication/token/validate_with_login', {
-        body: {
-          username: loginState.username,
-          password: loginState.password,
-          request_token,
-        },
+      dispatchFetchAuthOnLogin({
+        username: loginState.username,
+        password: loginState.password,
       });
-      const { session_id } = await CallApi.post('/authentication/session/new', {
-        body: {
-          request_token,
-        },
-      });
-      const user = await CallApi.get('/account', {
-        params: {
-          session_id,
-        },
-      });
-
       setLoginState({
         ...loginState,
         submitting: false,
       });
-      dispatchUpdateAuth({ user, session_id });
       dispatchLoginModal();
     } catch (error) {
       setLoginState({
         ...loginState,
         submitting: false,
         errors: {
-          base: error.status_message,
+          base: BASE_ERROR,
         },
       });
     }
   };
 
-  const onLogin = (e) => {
+  const onLogin = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const errors = validateFields();
     if (Object.keys(errors).length > 0) {
@@ -134,43 +123,47 @@ export const LoginForm: React.FC = () => {
 
   const { username, password, errors, submitting } = loginState;
   return (
-    <div className="form-login-container">
+    <div className="form-login-container form-wrapper">
       <form className="form-login">
-        <h1 className="h3 mb-3 font-weight-normal text-center">Log in</h1>
+        <h1 className="h3 mb-3 font-weight-normal text-center">Login</h1>
         <UIInput
           type="text"
           id="username"
           placeholder="Username"
-          labelText="Username"
+          labelText="Username (Hextus)"
           name="username"
           value={username}
           onChange={onChange}
           onBlur={handleBlur}
           error={errors.username ?? ''}
+          className={'login-form__input'}
+          classNameLabel={'login-form__label'}
         />
 
         <UIInput
           type="password"
           id="password"
           placeholder="Password"
-          labelText="Password"
+          labelText="Password (moviepass)"
           name="password"
           value={password}
           onChange={onChange}
           onBlur={handleBlur}
           error={errors.password ?? ''}
+          className={'login-form__input'}
+          classNameLabel={'login-form__label'}
         />
 
-        <button
+        <Button
           type="submit"
-          className="btn btn-lg btn-primary btn-block"
+          className="login-form__btn"
           onClick={onLogin}
           disabled={submitting}
-        >
-          Log in
-        </button>
+          label="Login"
+        />
+
         {errors.base && (
-          <div className="invalid-feedback text-center">{errors.base}</div>
+          <div className="error-feedback text-center">{errors.base}</div>
         )}
       </form>
     </div>

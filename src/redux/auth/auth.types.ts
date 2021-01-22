@@ -1,8 +1,30 @@
 import { Movies } from 'reduxApp/movies/movies.types';
 
+export interface IUser {
+  avatar: {
+    gravatar: {
+      hash: string;
+    };
+    tmdb: {
+      avatar_path: null | string;
+    };
+  };
+  id: number;
+  include_adult: boolean;
+  iso_639_1: string;
+  iso_3166_1: string;
+  name: string;
+  username: string;
+}
+
 export interface IAuthData {
-  user: any;
+  user: IUser;
   session_id: string;
+}
+
+export interface IUserAuth {
+  username: string;
+  password: string;
 }
 
 export const UPDATE_AUTH = 'UPDATE_AUTH';

@@ -2,10 +2,8 @@ import queryString from 'query-string';
 import axios from 'axios';
 
 import * as types from './api.types';
+import { API_URL, API_KEY_3 } from 'config';
 
-export const API_URL = process.env.API_URL;
-export const API_KEY_3 = process.env.API_KEY_3;
-export const API_KEY_4 = process.env.API_KEY_4;
 export class CallApi {
   static async get<T = any>(
     url: string,

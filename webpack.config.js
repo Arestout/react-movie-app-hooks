@@ -19,6 +19,7 @@ module.exports = {
       pages: path.resolve(__dirname, 'src/pages'),
       components: path.resolve(__dirname, 'src/components'),
       hooks: path.resolve(__dirname, 'src/hooks'),
+      config: path.resolve(__dirname, 'src/config'),
     },
   },
   output: {
